@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">City Guide</string>
+    <string name="welcome">Welcome to Chicago</string>
 </resources>
