@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,14 +57,22 @@ public class MainActivity extends ListActivity {
 //        super.onListItemClick(l, v, position, id);
 
 
-        /*if (position == 0){
+        if (position == 0){
             Toast.makeText(MainActivity.this, "You selected " + strAttractions[0],Toast.LENGTH_LONG).show();
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://artic.edu")));
-        }*/
+        } else
+        {
+           startActivity(new Intent(MainActivity.this, AttractionInfoActivity.class));
+
+           Attraction selectedAttraction = attractions.get(position);
+            DecimalFormat tenth = new DecimalFormat("$###,###,##");
+            Toast.makeText(MainActivity.this, "You selected " + selectedAttraction.getName()
+                    + ", and the cost is " + tenth.format(selectedAttraction.getCost()) + ".",Toast.LENGTH_LONG).show();
+        }
 
         //look up selected element in array
-        String strIndex =strAttractions[position];
-        Toast.makeText(MainActivity.this, "You selected " + strIndex + ".",Toast.LENGTH_LONG).show();
+//        String strIndex =strAttractions[position];
+//        Toast.makeText(MainActivity.this, "You selected " + strIndex + ".",Toast.LENGTH_LONG).show();
 
     }
 }
