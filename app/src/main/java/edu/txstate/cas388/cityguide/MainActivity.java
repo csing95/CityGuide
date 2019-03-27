@@ -2,7 +2,9 @@ package edu.txstate.cas388.cityguide;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -62,9 +64,21 @@ public class MainActivity extends ListActivity {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://artic.edu")));
         } else
         {
+
+            Attraction selectedAttraction = attractions.get(position);
+
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putInt("id", selectedAttraction.getId());
+            editor.putFloat("cost", (float) selectedAttraction.getCost());
+            editor.putString("name", selectedAttraction.getName());
+            editor.putString("url", selectedAttraction.getUrl());
+
+            editor.commit();
+
            startActivity(new Intent(MainActivity.this, AttractionInfoActivity.class));
 
-           Attraction selectedAttraction = attractions.get(position);
+
             DecimalFormat tenth = new DecimalFormat("$###,###,##");
             Toast.makeText(MainActivity.this, "You selected " + selectedAttraction.getName()
                     + ", and the cost is " + tenth.format(selectedAttraction.getCost()) + ".",Toast.LENGTH_LONG).show();
