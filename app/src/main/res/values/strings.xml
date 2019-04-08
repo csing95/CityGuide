@@ -2,4 +2,7 @@
     <string name="app_name">City Guide</string>
     <string name="welcome">Welcome to Chicago</string>
     <string name="cusSupptMessage">Please call 1-800-888-8888</string>
+    <string name="numOfPeople">Number of People</string>
+    <string name="calc">Calculate</string>
+    <string name="website">Go to Website</string>
 </resources>
