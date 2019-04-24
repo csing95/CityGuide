@@ -1,5 +1,8 @@
 package edu.txstate.cas388.cityguide;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Attraction {
     private int id;
     private String name;
@@ -16,6 +19,18 @@ public class Attraction {
         this.cost = cost;
         this.url = url;
         this.image = image;
+    }
+
+    public Attraction(JSONObject object) {
+        try {
+            this.id = object.getInt("Id");
+            this.name = object.getString("Name");
+            this.cost = object.getDouble("Cost");
+            this.url = object.getString("Url");
+        } catch (JSONException ex) {
+            System.out.println(ex);
+        }
+
     }
 
     public int getId() {
